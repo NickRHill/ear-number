@@ -1,0 +1,4 @@
+# The parent project ignores build/ (Android output); this package's build/ holds source.
+!build/
+build/nhanes/
+__pycache__/

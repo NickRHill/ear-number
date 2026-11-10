@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use Ear Number, please cite it as below."
+title: "Ear Number: a three-digit description of an ear's hearing"
+type: software
+version: "1"
+authors:
+  - family-names: Hill
+    given-names: Nicholas
+license:
+  - MIT
+  - CC-BY-4.0
+abstract: "Ear Number is a three-digit code per ear that decodes to an approximate audiogram, with a reference implementation, a published version 1 table and test vectors."
