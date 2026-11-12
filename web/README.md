@@ -29,8 +29,9 @@ Never edit the generated pages; change the sources and rebuild.
   `--check` fails if any is out of date, and the unit tests run it.
 - Translations other than English are machine translations marked
   `"reviewed": false`; each page says so in its footer. When a native
-  speaker has checked one, set `reviewed` to true and empty its
-  `translation_note`.
+  speaker has checked one, set `reviewed` to true and change its
+  `translation_note` to say how it was checked (or empty it after a
+  specialist review). Urdu: read through by a native speaker, 2026-11-12.
 
 ## Preview and tests
 

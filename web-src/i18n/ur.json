@@ -4,7 +4,7 @@
     "html_lang": "ur",
     "dir": "rtl",
     "native_name": "اردو",
-    "reviewed": false
+    "reviewed": true
   },
   "page": {
     "title": "Ear Number: ہر کان کی سماعت کے لیے ایک عدد",
@@ -103,7 +103,7 @@
     "privacy_1_html": "سب کچھ آپ کے براؤزر میں ہوتا ہے۔ آپ کا لکھا یا کھینچا ہوا کچھ بھی کہیں نہیں بھیجا جاتا۔ کاپی کیا گیا لنک اعداد کو <code>#</code> کے بعد رکھتا ہے، پتے کا وہ حصہ جو براؤزر سرور کو نہیں بھیجتے۔ شیئر کے لنک عام لنک ہیں: ان خدمات کا کچھ بھی اس صفحے پر لوڈ نہیں ہوتا، اور انہیں وہی ملتا ہے جو آپ پوسٹ کرنا چنیں۔",
     "foot_1_html": "ورژن 1۔ طریقہ، ڈیٹا اور کوڈ: <a href=\"https://github.com/NickRHill/ear-number\">github.com/NickRHill/ear-number</a> (<a href=\"https://github.com/NickRHill/ear-number/blob/main/paper.md\">مقالہ، انگریزی میں</a>)۔",
     "foot_2": "Hill N (2026). Ear Number: a three-digit description of an ear's hearing. جدول، مقالہ اور تصاویر CC BY 4.0؛ کوڈ MIT۔ جدول NHANES کی عوامی فائلوں (National Center for Health Statistics) سے بنائی گئی ہے۔",
-    "translation_note": "اس صفحے کا ترجمہ مشین سے کیا گیا ہے اور ابھی کسی اہلِ زبان نے اس کی جانچ نہیں کی۔ حوالے کے لیے انگریزی صفحہ (EN) دیکھیں۔"
+    "translation_note": "اس صفحے کا ترجمہ مشین سے کیا گیا ہے اور ایک اہلِ زبان نے اسے پڑھ کر جانچا ہے۔ حوالے کے لیے انگریزی صفحہ (EN) دیکھیں۔"
   },
   "js": {
     "axis": "سماعت کی حد، dB HL",
