@@ -202,6 +202,11 @@ python3 earnumber.py check 705 688
 Thresholds at 500, 1000, 2000, 4000 and 8000 Hz are required; 3000 and 6000 Hz
 are optional; a 250 Hz value is accepted but does not affect the number.
 
+`web/earnumber.js` is a JavaScript port with the same functions in camel case
+(`encode`, `decode`, `checkDigit`, `formatPair`, `parsePair`). It passes the
+conformance vectors (`node --test tests/js/*.test.mjs`) and loads the table with
+`loadTableUrl` or `loadTableBytes`, which check its SHA-256.
+
 ## Files
 
 The repository holds the paper, the reference code, the table and the
@@ -216,7 +221,9 @@ scripts that rebuild it.
 | `CITATION.cff` | citation metadata |
 | `build/` | scripts that download the public NHANES data and rebuild the table |
 | `figures/` | the shapes, the levels and worked examples |
-| `tests/` | unit tests: `python3 -m unittest discover -s tests` |
+| `web/` | the explanatory web page in 13 languages and the JavaScript port ([web/README.md](web/README.md)) |
+| `web-src/` | the page template and each language's text; `python3 build/build_web.py` generates `web/` |
+| `tests/` | unit tests: `python3 -m unittest discover -s tests`; JavaScript: `node --test tests/js/*.test.mjs` |
 
 ## Rebuilding the table
 

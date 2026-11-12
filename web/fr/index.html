@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Ear Number : un nombre pour l&#x27;audition de chaque oreille</title>
+<meta name="description" content="Ear Number : trois chiffres qui disent comment entend une oreille, et qui redonnent un audiogramme.">
+<link rel="canonical" href="https://nickrhill.github.io/ear-number/fr/">
+<link rel="alternate" hreflang="en-GB" href="https://nickrhill.github.io/ear-number/">
+<link rel="alternate" hreflang="zh-Hans" href="https://nickrhill.github.io/ear-number/zh-hans/">
+<link rel="alternate" hreflang="hi" href="https://nickrhill.github.io/ear-number/hi/">
+<link rel="alternate" hreflang="es" href="https://nickrhill.github.io/ear-number/es/">
+<link rel="alternate" hreflang="ar" href="https://nickrhill.github.io/ear-number/ar/">
+<link rel="alternate" hreflang="fr" href="https://nickrhill.github.io/ear-number/fr/">
+<link rel="alternate" hreflang="bn" href="https://nickrhill.github.io/ear-number/bn/">
+<link rel="alternate" hreflang="pt" href="https://nickrhill.github.io/ear-number/pt/">
+<link rel="alternate" hreflang="ru" href="https://nickrhill.github.io/ear-number/ru/">
+<link rel="alternate" hreflang="id" href="https://nickrhill.github.io/ear-number/id/">
+<link rel="alternate" hreflang="ur" href="https://nickrhill.github.io/ear-number/ur/">
+<link rel="alternate" hreflang="ja" href="https://nickrhill.github.io/ear-number/ja/">
+<link rel="alternate" hreflang="tr" href="https://nickrhill.github.io/ear-number/tr/">
+<link rel="alternate" hreflang="x-default" href="https://nickrhill.github.io/ear-number/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232457c5'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='white'%3E999%3C/text%3E%3C/svg%3E">
+<script>try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch {}</script>
+<link rel="stylesheet" href="../style.css">
+<script type="application/json" id="i18n">{"axis":"seuil d'audition, dB HL","chart_normal":"normale","chart_mild":"légère","chart_moderate":"moyenne","chart_modsevere":"moy. sévère","chart_severe":"sévère","chart_profound":"profonde","chart_complete":"totale","left_ear":"Oreille gauche","right_ear":"Oreille droite","point_aria":"{ear}, {freq}","band_normal":"audition normale","band_mild":"perte légère","band_moderate":"perte moyenne","band_modsevere":"perte moyennement sévère","band_severe":"perte sévère","band_profound":"perte profonde","band_little":"audition faible ou nulle","no_hearing":"aucune audition, ou pas d'oreille","avg_under5":"moins de 5 dB","avg_95":"95 dB ou plus","avg_range":"{lo}–{hi} dB","band_line":"{band} · moyenne {avg}","optional":"facultatif","note_no8k":"Pas de valeur à 8 kHz. Beaucoup de tests au travail s'arrêtent à 6 kHz. Copier votre valeur à 6 kHz ({v} dB) donne en général le bon niveau, environ 9 fois sur 10 et jamais à plus d'un cran, mais les deux derniers chiffres peuvent différer d'un test complet.","copy_6k":"Copier 6 kHz ({v} dB) vers 8 kHz","note_needs":"Il manque une valeur à {freqs}.","note_unreal":"Ce nombre se décode, mais aucune oreille mesurée ne le produit : son graphique sort de l'échelle.","st_check_bad":"Le chiffre de contrôle ne correspond pas. Ressaisissez le nombre.","st_suffix_bad":"Seules les lettres E et N (et d'autres lettres réservées) peuvent suivre un nombre.","st_not_pair":"Ce n'est pas une paire d'Ear Numbers. Tapez six chiffres, oreille gauche puis droite, et le chiffre de contrôle si vous l'avez.","st_type_six":"Tapez six chiffres, oreille gauche puis droite, et le chiffre de contrôle si vous l'avez.","st_no_check":"Pas de chiffre de contrôle. Pour cette paire, c'est {c}.","st_check_ok":"Chiffre de contrôle correct.","st_copy_this":"Copiez ceci : {v}","st_table_failed":"Impossible de charger la table Ear Number : {msg}.","st_clear":"Saisissez ci-dessous les valeurs de chaque oreille, ou cliquez sur les graphiques pour les placer.","copied":"Copié","share_message":"Mes Ear Numbers sont {pair}. Et les vôtres ?","share_subject":"Mes Ear Numbers"}</script>
+<script type="module" src="../app.js"></script>
+</head>
+<body>
+<main>
+  <header class="intro">
+    <div class="topbar">
+      <h1>Ear Number</h1>
+      <div class="top-controls">
+        <a class="lang-en" href="../" hreflang="en" lang="en" title="English">EN</a>
+        <label class="lang-pick"><span class="visually-hidden">Langue</span>
+        <select id="lang" aria-label="Langue">
+          <option value="../" lang="en-GB">English</option>
+          <option value="../zh-hans/" lang="zh-Hans">中文（简体）</option>
+          <option value="../hi/" lang="hi">हिन्दी</option>
+          <option value="../es/" lang="es">Español</option>
+          <option value="../ar/" lang="ar">العربية</option>
+          <option value="../fr/" lang="fr" selected>Français</option>
+          <option value="../bn/" lang="bn">বাংলা</option>
+          <option value="../pt/" lang="pt">Português</option>
+          <option value="../ru/" lang="ru">Русский</option>
+          <option value="../id/" lang="id">Bahasa Indonesia</option>
+          <option value="../ur/" lang="ur">اردو</option>
+          <option value="../ja/" lang="ja">日本語</option>
+          <option value="../tr/" lang="tr">Türkçe</option>
+        </select></label>
+      <button id="theme" class="theme" type="button" aria-label="Basculer entre clair et sombre">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      </div>
+    </div>
+    <p class="lede">Trois chiffres qui disent comment entend une oreille, et qui redonnent un audiogramme. Plus c&#x27;est haut, mieux c&#x27;est : 999 est une oreille jeune et saine, 000 aucune audition.</p>
+  </header>
+
+  <section class="tool" aria-labelledby="tool-h">
+    <h2 id="tool-h" class="visually-hidden">Essayer un nombre</h2>
+    <div class="mine">
+      <label for="pair" class="pair-label">Vos Ear Numbers <span class="pair-parts">gauche · droite · chiffre de contrôle</span></label>
+      <div class="pair-row">
+        <div class="address">
+          <span class="prefix" aria-hidden="true"><span class="pfx"><span class="pfx-host"></span><span class="pfx-path"></span></span></span>
+          <input id="pair" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="705 688 4" aria-describedby="status">
+        </div>
+        <button id="copy-number" class="copy-btn" type="button" aria-label="Copier les Ear Numbers">
+          <svg class="icon-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></svg>
+          <svg class="icon-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          <span class="copy-word" data-word="Nombre">Nombre</span>
+        </button>
+        <button id="copy-link" class="copy-btn" type="button" aria-label="Copier le lien vers ces Ear Numbers">
+          <svg class="icon-copy" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L12 5.6M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>
+          <svg class="icon-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          <span class="copy-word" data-word="Lien">Lien</span>
+        </button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <div class="social" id="social" role="group" aria-labelledby="social-h">
+        <span id="social-h" class="social-label">Partager sur</span>
+        <button type="button" id="native-share" class="social-native" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+          <span>Partager</span>
+        </button>
+        <a data-net="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a data-net="x" target="_blank" rel="noopener noreferrer">X</a>
+        <a data-net="facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a data-net="bluesky" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a data-net="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a data-net="reddit" target="_blank" rel="noopener noreferrer">Reddit</a>
+        <a data-net="email">E-mail</a>
+      </div>
+    </div>
+
+    <div class="examples" role="group" aria-labelledby="ex-h">
+      <p id="ex-h" class="examples-h">Ou essayez un exemple</p>
+      <div class="ex-group" role="group" aria-labelledby="ex-age">
+        <span id="ex-age" class="examples-label">Oreille typique à l&#x27;âge de</span>
+        <button type="button" data-pair="944 944 5" title="Valeur médiane des adultes américains de 20 à 29 ans">25</button>
+        <button type="button" data-pair="890 889 0" title="Valeur médiane des adultes américains de 45 à 54 ans">50</button>
+        <button type="button" data-pair="668 726 3" title="Valeur médiane des adultes américains de 70 à 79 ans">70</button>
+        <button type="button" data-pair="555 555 0" title="Valeur médiane des adultes américains de 80 ans et plus">80+</button>
+      </div>
+      <div class="ex-group" role="group" aria-labelledby="ex-kind">
+        <span id="ex-kind" class="examples-label">Types de perte</span>
+        <button type="button" data-pair="717 767 4" title="Un creux vers 4 kHz, typique d&#x27;un dommage dû au bruit">Dommage dû au bruit</button>
+        <button type="button" data-pair="607 551 2" title="Graves presque normaux, aigus perdus">Perte brutale des aigus</button>
+        <button type="button" data-pair="548 544 3" title="La même perte à toutes les fréquences">Perte uniforme</button>
+        <button type="button" data-pair="000 944 6" title="Aucune audition à gauche, oreille droite saine">Une oreille sourde</button>
+      </div>
+    </div>
+
+    <div class="charts">
+      <figure class="ear" data-ear="left">
+        <figcaption>
+          <span class="ear-head"><span class="ear-name">Oreille gauche</span>
+            <span class="ear-num" aria-live="polite">&ndash;</span></span>
+          <span class="ear-band"></span>
+        </figcaption>
+        <svg class="audiogram" role="group" aria-label="Audiogramme de l&#x27;oreille gauche"></svg>
+        <div class="ear-note" aria-live="polite"></div>
+      </figure>
+      <figure class="ear" data-ear="right">
+        <figcaption>
+          <span class="ear-head"><span class="ear-name">Oreille droite</span>
+            <span class="ear-num" aria-live="polite">&ndash;</span></span>
+          <span class="ear-band"></span>
+        </figcaption>
+        <svg class="audiogram" role="group" aria-label="Audiogramme de l&#x27;oreille droite"></svg>
+        <div class="ear-note" aria-live="polite"></div>
+      </figure>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><svg width="22" height="12"><line x1="1" y1="6" x2="21" y2="6" class="lg-line"/></svg> profil courant le plus proche : ce que le nombre enregistre</span>
+      <span><svg width="14" height="14"><path d="M3 3L11 11M11 3L3 11" class="lg-x"/></svg><svg width="14" height="14"><circle cx="7" cy="7" r="4.5" class="lg-o"/></svg> vos points (gauche X, droite O) : faites-les glisser</span>
+    </div>
+    <p class="hint">Faites glisser un point vers le haut ou le bas, ou cliquez sur un graphique pour en placer un. Quand vous déplacez un point, la ligne saute vers le plus proche de 50 profils d&#x27;audition courants : ce profil, avec le niveau d&#x27;audition, est ce que le nombre enregistre, d&#x27;où une ligne proche de vos points plutôt que dessus. Plus haut sur le graphique signifie meilleure audition. Au clavier, allez sur un point avec Tab et utilisez les flèches.</p>
+
+    <details id="entry" class="entry">
+      <summary>Saisir un test auditif</summary>
+      <div class="entry-body">
+        <fieldset class="source">
+          <legend>D&#x27;où vient votre résultat ?</legend>
+          <label><input type="radio" name="source" value="clinic" checked> Un graphique d&#x27;une clinique ou d&#x27;un audioprothésiste</label>
+          <label><input type="radio" name="source" value="table"> Une liste de nombres (médecine du travail, un courrier)</label>
+          <label><input type="radio" name="source" value="phone"> Un test sur téléphone ou avec des écouteurs</label>
+        </fieldset>
+
+        <div class="guide" data-source="clinic">
+          <p>Un audiogramme indique le son le plus faible entendu à chaque fréquence. Les fréquences sont en haut, de gauche à droite ; l&#x27;intensité descend sur le côté, avec 0 en haut et les nombres plus grands, une audition moins bonne, plus bas. Si l&#x27;on ne vous a pas remis de copie, demandez-la à la clinique.</p>
+          <ul>
+            <li>Lisez les <strong>ronds (O, souvent rouges) pour l'oreille droite</strong> et les <strong>croix (X, souvent bleues) pour la gauche</strong>. Si un triangle (droite) ou un carré (gauche) apparaît à une fréquence, prenez-le à la place : c'est le même test avec masquage.</li>
+            <li>Ignorez <code>&lt;</code> <code>&gt;</code> <code>[</code> <code>]</code> : ils concernent la conduction osseuse, un autre test.</li>
+            <li>Une <strong>flèche</strong> sur un symbole signifie aucune réponse même au son le plus fort testé. Votre seuil se situe au-delà : saisissez le niveau indiqué, ou une valeur plus élevée si vous préférez. Tout ce qui dépasse 100 compte pour 100.</li>
+            <li>Les valeurs à 250, 750 et 1500 Hz ne sont pas nécessaires. Vous pouvez aussi placer chaque point en cliquant sur les graphiques ci-dessus.</li>
+          </ul>
+        </div>
+        <div class="guide" data-source="table" hidden>
+          <p>Saisissez chaque valeur en dB HL, telle qu&#x27;imprimée. 3 kHz et 6 kHz sont facultatifs ; laissez-les vides s&#x27;ils manquent. Beaucoup de tests au travail s&#x27;arrêtent à 6 kHz ; s&#x27;il n&#x27;y a pas de 8 kHz, la page proposera de copier la valeur de 6 kHz.</p>
+          <p>Une valeur marquée « pas de réponse » (souvent <code>NR</code> ou une flèche) signifie que vous n'avez rien entendu même au niveau le plus fort testé : saisissez ce niveau, ou une valeur plus élevée si vous préférez. Tout ce qui dépasse 100 compte pour 100.</p>
+        </div>
+        <div class="guide" data-source="phone" hidden>
+          <p>Dans Santé d&#x27;Apple, ouvrez Audition, puis Audiogrammes, et ouvrez le test pour voir la valeur de chaque oreille à chaque fréquence. D&#x27;autres applications montrent en général un graphique ou une liste semblable.</p>
+          <p>Les téléphones et écouteurs ne sont pas étalonnés comme le matériel d'une clinique : les nombres sont donc marqués <strong>E</strong> (estimé). Le test d'Apple ne mesure les pertes que jusqu'à environ 85 dB HL : si une valeur est à cette limite, votre audition peut y être moins bonne, et vous pouvez saisir une valeur plus élevée.</p>
+        </div>
+
+        <div class="grid-wrap">
+          <table class="grid">
+            <caption class="visually-hidden">Seuils d&#x27;audition en dB HL</caption>
+            <thead><tr><th scope="col">dB HL</th></tr></thead>
+            <tbody>
+              <tr data-ear="left"><th scope="row">Gauche</th></tr>
+              <tr data-ear="right"><th scope="row">Droite</th></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid-actions">
+          <label class="estimated"><input type="checkbox" id="estimated"> Auto-test sur téléphone ou écouteurs : marquer les deux nombres E</label>
+          <button type="button" id="clear">Effacer les deux oreilles</button>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <article class="explain">
+    <h2 class="explain-h">À propos d&#x27;Ear Number</h2>
+    <details>
+      <summary><h2>Pourquoi l&#x27;audition a-t-elle besoin d&#x27;un nombre ?</h2></summary>
+      <p>La vue a son « 10/10 ». L&#x27;audition a l&#x27;audiogramme : un graphique du son le plus faible qu&#x27;une oreille perçoit sur environ sept fréquences. Il décrit bien une oreille, mais personne ne se souvient du sien, et il est malcommode à saisir dans un appareil. Parler de perte « légère » ou « moyenne » est trop grossier pour régler quoi que ce soit et ne dit pas quelles fréquences sont touchées.</p>
+      <p>Ear Number est assez court pour être retenu et cité, ordonné pour qu&#x27;un nombre plus grand signifie une meilleure audition, et assez précis pour qu&#x27;un lecteur de musique, des écouteurs ou une application d&#x27;aide auditive le retransforment en graphique.</p>
+    </details>
+
+    <details>
+      <summary><h2>Comment lire un nombre ?</h2></summary>
+      <p>Une personne a deux nombres, l'oreille gauche d'abord, puis un chiffre de contrôle qui permet de repérer une faute de frappe : <strong>705 688 4</strong>. Chaque nombre répond à deux questions.</p>
+      <p><strong>Combien on entend.</strong> L'échelle avance par blocs de 50, et chaque bloc correspond à 5 dB du seuil moyen de l'oreille, pondéré vers les fréquences les plus utiles à la parole. Retirez le nombre de 1000 et divisez par dix : vous obtenez cette moyenne en dB à 5 dB près.</p>
+      <div class="table-wrap">
+        <table class="bands">
+          <thead><tr><th scope="col">Nombre</th><th scope="col">Seuil moyen</th><th scope="col">En langage courant</th></tr></thead>
+          <tbody>
+            <tr><td>800&ndash;999</td><td>moins de 20 dB</td><td>audition normale</td></tr>
+            <tr><td>650&ndash;799</td><td>de 20 à 35 dB</td><td>perte légère</td></tr>
+            <tr><td>500&ndash;649</td><td>de 35 à 50 dB</td><td>perte moyenne</td></tr>
+            <tr><td>350&ndash;499</td><td>de 50 à 65 dB</td><td>perte moyennement sévère</td></tr>
+            <tr><td>200&ndash;349</td><td>de 65 à 80 dB</td><td>perte sévère</td></tr>
+            <tr><td>050&ndash;199</td><td>de 80 à 95 dB</td><td>perte profonde</td></tr>
+            <tr><td>000&ndash;049</td><td>95 dB ou plus</td><td>audition faible ou nulle</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>De quel type.</strong> Dans un bloc de 50, la position désigne l'une de 50 formes typiques : uniforme sur toutes les fréquences, aigus qui chutent tôt ou tard, un creux vers 4 kHz, etc. Cette partie décrit ; elle ne classe pas. 905 et 940 sont des oreilles aussi bonnes, de types différents, tandis que 950 est un cran meilleur que 949.</p>
+      <ul>
+        <li>Quand deux nombres sont à 50 ou plus d&#x27;écart, le plus grand est la meilleure oreille selon cette mesure. Plus proches que cela, ne tirez aucune conclusion de l&#x27;ordre.</li>
+        <li>Un test auditif n&#x27;est pas parfaitement reproductible, le nombre non plus. Refaire le test change souvent les deux derniers chiffres et peut faire passer le nombre dans le bloc voisin. Ne considérez comme réel qu&#x27;un écart de 100 ou plus.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><h2>Que signifient 000, E et N ?</h2></summary>
+      <ul>
+        <li><strong>000</strong> signifie aucune audition de ce côté, ou pas d'oreille.</li>
+        <li><strong>E</strong>, comme dans <code>456E</code>, signifie que le nombre vient d'un auto-test sur téléphone ou écouteurs, pas d'une clinique. Ces nombres sont plus approximatifs.</li>
+        <li><strong>N</strong> signifie que cette oreille n'a pas été mesurée et que sa valeur est supposée, en général copiée de l'autre oreille.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><h2>D&#x27;où viennent les nombres ?</h2></summary>
+      <p>La table derrière le nombre a été apprise à partir des tests auditifs de 29 061 oreilles, de 6 à plus de 80 ans, de l&#x27;enquête nationale américaine sur la santé et la nutrition (NHANES). Sur des oreilles mises de côté lors de sa construction, le graphique tiré du nombre diffère du graphique mesuré d&#x27;environ 5 dB, à peu près autant qu&#x27;un second test sur la même oreille.</p>
+    </details>
+
+    <details>
+      <summary><h2>Ce que ce n&#x27;est pas</h2></summary>
+      <p>Ear Number décrit les seuils d&#x27;audition et rien d&#x27;autre. Ce n&#x27;est pas un diagnostic ; il ne dit rien de la cause d&#x27;une perte auditive et ne remplace pas un bilan auditif. Il ne mesure ni la compréhension de la parole dans le bruit, ni le volume trop fort pour quelqu&#x27;un, ni les acouphènes, et il ignore tout en dessous de 500 Hz et au-dessus de 8 kHz.</p>
+      <p>Ce n'est pas le <a href="https://hearingnumber.org">Hearing Number</a> promu par l'université Johns Hopkins, une simple moyenne en dB où plus bas est meilleur. La partie « combien » d'Ear Number en est proche : (1000 &minus; Ear Number) / 10.</p>
+    </details>
+
+    <details>
+      <summary><h2>Ce que je saisis est-il envoyé quelque part ?</h2></summary>
+      <p>Tout se passe dans votre navigateur. Rien de ce que vous tapez ou déplacez n'est envoyé. Un lien copié garde les nombres après le <code>#</code>, une partie de l'adresse que les navigateurs n'envoient pas au serveur. Les liens de partage sont de simples liens : rien de ces services ne se charge sur cette page, et ils ne reçoivent que ce que vous choisissez de publier.</p>
+    </details>
+  </article>
+
+  <footer class="foot">
+    <p>Version 1. Méthode, données et code : <a href="https://github.com/NickRHill/ear-number">github.com/NickRHill/ear-number</a> (<a href="https://github.com/NickRHill/ear-number/blob/main/paper.md">article, en anglais</a>).</p>
+    <p>Hill N (2026). Ear Number: a three-digit description of an ear&#x27;s hearing. Table, article et figures CC BY 4.0 ; code MIT. La table est tirée des fichiers publics de NHANES (National Center for Health Statistics).</p>
+    <p class="translation-note">Cette page a été traduite automatiquement et n&#x27;a pas encore été relue par un locuteur natif. La page en anglais (EN) fait foi.</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Ear Number：每只耳朵听力的一个数字</title>
+<meta name="description" content="Ear Number：用三位数字表示一只耳朵听得有多好，并且可以还原成听力图。">
+<link rel="canonical" href="https://nickrhill.github.io/ear-number/zh-hans/">
+<link rel="alternate" hreflang="en-GB" href="https://nickrhill.github.io/ear-number/">
+<link rel="alternate" hreflang="zh-Hans" href="https://nickrhill.github.io/ear-number/zh-hans/">
+<link rel="alternate" hreflang="hi" href="https://nickrhill.github.io/ear-number/hi/">
+<link rel="alternate" hreflang="es" href="https://nickrhill.github.io/ear-number/es/">
+<link rel="alternate" hreflang="ar" href="https://nickrhill.github.io/ear-number/ar/">
+<link rel="alternate" hreflang="fr" href="https://nickrhill.github.io/ear-number/fr/">
+<link rel="alternate" hreflang="bn" href="https://nickrhill.github.io/ear-number/bn/">
+<link rel="alternate" hreflang="pt" href="https://nickrhill.github.io/ear-number/pt/">
+<link rel="alternate" hreflang="ru" href="https://nickrhill.github.io/ear-number/ru/">
+<link rel="alternate" hreflang="id" href="https://nickrhill.github.io/ear-number/id/">
+<link rel="alternate" hreflang="ur" href="https://nickrhill.github.io/ear-number/ur/">
+<link rel="alternate" hreflang="ja" href="https://nickrhill.github.io/ear-number/ja/">
+<link rel="alternate" hreflang="tr" href="https://nickrhill.github.io/ear-number/tr/">
+<link rel="alternate" hreflang="x-default" href="https://nickrhill.github.io/ear-number/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232457c5'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='white'%3E999%3C/text%3E%3C/svg%3E">
+<script>try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch {}</script>
+<link rel="stylesheet" href="../style.css">
+<script type="application/json" id="i18n">{"axis":"听阈，dB HL","chart_normal":"正常","chart_mild":"轻度","chart_moderate":"中度","chart_modsevere":"中重度","chart_severe":"重度","chart_profound":"极重度","chart_complete":"全聋","left_ear":"左耳","right_ear":"右耳","point_aria":"{ear}，{freq}","band_normal":"听力正常","band_mild":"轻度损失","band_moderate":"中度损失","band_modsevere":"中重度损失","band_severe":"重度损失","band_profound":"极重度损失","band_little":"几乎或完全听不见","no_hearing":"没有听力，或没有耳朵","avg_under5":"低于 5 dB","avg_95":"95 dB 或以上","avg_range":"{lo}–{hi} dB","band_line":"{band} · 平均 {avg}","optional":"可选","note_no8k":"没有 8 kHz 的值。很多职业体检只测到 6 kHz。复制你的 6 kHz 值（{v} dB）通常能得到正确的档位，大约十次有九次，而且最多差一档，但最后两位可能与完整测试不同。","copy_6k":"把 6 kHz（{v} dB）复制到 8 kHz","note_needs":"需要以下频率的值：{freqs}。","note_unreal":"这个数字可以解码，但没有任何实测耳朵会得到它：它的图表超出了刻度。","st_check_bad":"校验位不符。请重新输入数字。","st_suffix_bad":"数字后面只能跟字母 E 和 N（以及其他保留字母）。","st_not_pair":"这不是一组 Ear Number。请输入六位数字，先左耳再右耳，如有校验位也一并输入。","st_type_six":"请输入六位数字，先左耳再右耳，如有校验位也一并输入。","st_no_check":"未输入校验位。这组数字的校验位是 {c}。","st_check_ok":"校验位正确。","st_copy_this":"请复制：{v}","st_table_failed":"无法加载 Ear Number 表格：{msg}。","st_clear":"在下方输入每只耳朵的值，或点击图表放置。","copied":"已复制","share_message":"我的 Ear Number 是 {pair}。你的是多少？","share_subject":"我的 Ear Number"}</script>
+<script type="module" src="../app.js"></script>
+</head>
+<body>
+<main>
+  <header class="intro">
+    <div class="topbar">
+      <h1>Ear Number</h1>
+      <div class="top-controls">
+        <a class="lang-en" href="../" hreflang="en" lang="en" title="English">EN</a>
+        <label class="lang-pick"><span class="visually-hidden">语言</span>
+        <select id="lang" aria-label="语言">
+          <option value="../" lang="en-GB">English</option>
+          <option value="../zh-hans/" lang="zh-Hans" selected>中文（简体）</option>
+          <option value="../hi/" lang="hi">हिन्दी</option>
+          <option value="../es/" lang="es">Español</option>
+          <option value="../ar/" lang="ar">العربية</option>
+          <option value="../fr/" lang="fr">Français</option>
+          <option value="../bn/" lang="bn">বাংলা</option>
+          <option value="../pt/" lang="pt">Português</option>
+          <option value="../ru/" lang="ru">Русский</option>
+          <option value="../id/" lang="id">Bahasa Indonesia</option>
+          <option value="../ur/" lang="ur">اردو</option>
+          <option value="../ja/" lang="ja">日本語</option>
+          <option value="../tr/" lang="tr">Türkçe</option>
+        </select></label>
+      <button id="theme" class="theme" type="button" aria-label="切换浅色和深色">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      </div>
+    </div>
+    <p class="lede">用三位数字表示一只耳朵听得有多好，并且可以还原成听力图。数字越大越好：999 是健康的年轻耳朵，000 表示完全听不见。</p>
+  </header>
+
+  <section class="tool" aria-labelledby="tool-h">
+    <h2 id="tool-h" class="visually-hidden">试一个数字</h2>
+    <div class="mine">
+      <label for="pair" class="pair-label">你的 Ear Number <span class="pair-parts">左 · 右 · 校验位</span></label>
+      <div class="pair-row">
+        <div class="address">
+          <span class="prefix" aria-hidden="true"><span class="pfx"><span class="pfx-host"></span><span class="pfx-path"></span></span></span>
+          <input id="pair" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="705 688 4" aria-describedby="status">
+        </div>
+        <button id="copy-number" class="copy-btn" type="button" aria-label="复制 Ear Number">
+          <svg class="icon-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></svg>
+          <svg class="icon-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          <span class="copy-word" data-word="数字">数字</span>
+        </button>
+        <button id="copy-link" class="copy-btn" type="button" aria-label="复制这组 Ear Number 的链接">
+          <svg class="icon-copy" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L12 5.6M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>
+          <svg class="icon-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          <span class="copy-word" data-word="链接">链接</span>
+        </button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <div class="social" id="social" role="group" aria-labelledby="social-h">
+        <span id="social-h" class="social-label">分享到</span>
+        <button type="button" id="native-share" class="social-native" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+          <span>分享</span>
+        </button>
+        <a data-net="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a data-net="x" target="_blank" rel="noopener noreferrer">X</a>
+        <a data-net="facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a data-net="bluesky" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a data-net="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a data-net="reddit" target="_blank" rel="noopener noreferrer">Reddit</a>
+        <a data-net="email">电子邮件</a>
+      </div>
+    </div>
+
+    <div class="examples" role="group" aria-labelledby="ex-h">
+      <p id="ex-h" class="examples-h">或者试试例子</p>
+      <div class="ex-group" role="group" aria-labelledby="ex-age">
+        <span id="ex-age" class="examples-label">该年龄的典型耳朵</span>
+        <button type="button" data-pair="944 944 5" title="美国 20 至 29 岁成年人的中位数">25</button>
+        <button type="button" data-pair="890 889 0" title="美国 45 至 54 岁成年人的中位数">50</button>
+        <button type="button" data-pair="668 726 3" title="美国 70 至 79 岁成年人的中位数">70</button>
+        <button type="button" data-pair="555 555 0" title="美国 80 岁及以上成年人的中位数">80+</button>
+      </div>
+      <div class="ex-group" role="group" aria-labelledby="ex-kind">
+        <span id="ex-kind" class="examples-label">听力损失类型</span>
+        <button type="button" data-pair="717 767 4" title="4 kHz 附近凹陷，是噪声损伤的典型特征">噪声损伤</button>
+        <button type="button" data-pair="607 551 2" title="低频接近正常，高频丧失">高频陡降损失</button>
+        <button type="button" data-pair="548 544 3" title="各个频率损失相同">平坦型损失</button>
+        <button type="button" data-pair="000 944 6" title="左耳听不见，右耳健康">单耳失聪</button>
+      </div>
+    </div>
+
+    <div class="charts">
+      <figure class="ear" data-ear="left">
+        <figcaption>
+          <span class="ear-head"><span class="ear-name">左耳</span>
+            <span class="ear-num" aria-live="polite">&ndash;</span></span>
+          <span class="ear-band"></span>
+        </figcaption>
+        <svg class="audiogram" role="group" aria-label="左耳听力图"></svg>
+        <div class="ear-note" aria-live="polite"></div>
+      </figure>
+      <figure class="ear" data-ear="right">
+        <figcaption>
+          <span class="ear-head"><span class="ear-name">右耳</span>
+            <span class="ear-num" aria-live="polite">&ndash;</span></span>
+          <span class="ear-band"></span>
+        </figcaption>
+        <svg class="audiogram" role="group" aria-label="右耳听力图"></svg>
+        <div class="ear-note" aria-live="polite"></div>
+      </figure>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><svg width="22" height="12"><line x1="1" y1="6" x2="21" y2="6" class="lg-line"/></svg> 最接近的常见模式：数字记录的内容</span>
+      <span><svg width="14" height="14"><path d="M3 3L11 11M11 3L3 11" class="lg-x"/></svg><svg width="14" height="14"><circle cx="7" cy="7" r="4.5" class="lg-o"/></svg> 你的点（左 X，右 O）：可以拖动</span>
+    </div>
+    <p class="hint">上下拖动一个点，或点击图表放置一个点。移动点时，线会跳到 50 种常见听力模式中最接近的一种：这个模式加上听力多少，就是数字所记录的，所以线会靠近你的点，而不是正好穿过它们。图表上越高表示听力越好。使用键盘时，用 Tab 键移到一个点，再用方向键。</p>
+
+    <details id="entry" class="entry">
+      <summary>输入听力检查结果</summary>
+      <div class="entry-body">
+        <fieldset class="source">
+          <legend>你的结果来自哪里？</legend>
+          <label><input type="radio" name="source" value="clinic" checked> 医院或助听器验配机构的听力图</label>
+          <label><input type="radio" name="source" value="table"> 一串数字（职业体检、一封信）</label>
+          <label><input type="radio" name="source" value="phone"> 在手机或耳机上做的测试</label>
+        </fieldset>
+
+        <div class="guide" data-source="clinic">
+          <p>听力图标出你在每个频率能听到的最小声音。频率在顶部从左到右排列；响度沿侧边向下，0 在顶部，数字越大（听力越差）越靠下。如果没有拿到副本，可以向医院索取。</p>
+          <ul>
+            <li>读取<strong>右耳的圆圈（O，通常为红色）</strong>和<strong>左耳的叉号（X，通常为蓝色）</strong>。如果某个频率出现三角形（右）或方块（左），就用它：那是加了掩蔽的同一项测试。</li>
+            <li>忽略 <code>&lt;</code> <code>&gt;</code> <code>[</code> <code>]</code>：它们是骨导，属于另一项测试。</li>
+            <li>符号上的<strong>箭头</strong>表示即使在测试的最大声音下也没有反应。你的阈值超出该水平：填入显示的水平，或者如果你愿意，填一个更高的值。超过 100 的都按 100 计。</li>
+            <li>不需要 250、750 和 1500 Hz 的值。你也可以点击上面的图表来放置每个点。</li>
+          </ul>
+        </div>
+        <div class="guide" data-source="table" hidden>
+          <p>按印出的数值填写每个 dB HL 值。3 kHz 和 6 kHz 可选；结果中没有就留空。很多职业体检只测到 6 kHz；如果你的结果没有 8 kHz，页面会提出复制 6 kHz 的值。</p>
+          <p>标为无反应的值（常写作 <code>NR</code> 或箭头）表示在测试的最高水平下你也什么都没听到：填入该水平，或者如果你愿意，填一个更高的值。超过 100 的都按 100 计。</p>
+        </div>
+        <div class="guide" data-source="phone" hidden>
+          <p>在 Apple“健康”中打开“听力”，再打开“听力图”，然后打开测试，即可看到每只耳朵在每个频率的值。其他应用通常也会显示类似的图表或列表。</p>
+          <p>手机和耳机不像医院设备那样经过校准，所以这些数字要标上 <strong>E</strong>（估计值）。Apple 的测试只能测到约 85 dB HL 的损失：如果某个值正好在这个上限，你在该频率的听力可能更差，你可以自行填一个更高的值。</p>
+        </div>
+
+        <div class="grid-wrap">
+          <table class="grid">
+            <caption class="visually-hidden">听阈（dB HL）</caption>
+            <thead><tr><th scope="col">dB HL</th></tr></thead>
+            <tbody>
+              <tr data-ear="left"><th scope="row">左</th></tr>
+              <tr data-ear="right"><th scope="row">右</th></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid-actions">
+          <label class="estimated"><input type="checkbox" id="estimated"> 在手机或耳机上自测：两个数字都标上 E</label>
+          <button type="button" id="clear">清除两耳</button>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <article class="explain">
+    <h2 class="explain-h">关于 Ear Number</h2>
+    <details>
+      <summary><h2>为什么听力需要一个数字？</h2></summary>
+      <p>视力有“5.0”这样的数字。听力有听力图：一张耳朵在大约七个频率上能察觉到的最小声音的图表。它能很好地描述一只耳朵，但没人记得自己的听力图，也不方便输入到设备里。说“轻度”或“中度”损失又太粗略，无法用来调节任何东西，也说不出哪些频率受了影响。</p>
+      <p>Ear Number 短到可以记住和说出来，按顺序排列使数字越大听力越好，又足够详细，音乐播放器、耳机或助听器应用可以把它还原成图表。</p>
+    </details>
+
+    <details>
+      <summary><h2>怎么读这个数字？</h2></summary>
+      <p>每个人有两个数字，先是左耳，然后是一位校验位，让软件能发现输错的数字：<strong>705 688 4</strong>。每个数字回答两个问题。</p>
+      <p><strong>听力有多少。</strong>刻度以 50 为一档，每一档对应耳朵平均听阈的 5 dB，平均时更看重对言语最重要的频率。用 1000 减去这个数字再除以十，就得到这个平均值（dB），误差在 5 dB 以内。</p>
+      <div class="table-wrap">
+        <table class="bands">
+          <thead><tr><th scope="col">数字</th><th scope="col">平均听阈</th><th scope="col">通俗说法</th></tr></thead>
+          <tbody>
+            <tr><td>800&ndash;999</td><td>低于 20 dB</td><td>听力正常</td></tr>
+            <tr><td>650&ndash;799</td><td>20 至 35 dB</td><td>轻度损失</td></tr>
+            <tr><td>500&ndash;649</td><td>35 至 50 dB</td><td>中度损失</td></tr>
+            <tr><td>350&ndash;499</td><td>50 至 65 dB</td><td>中重度损失</td></tr>
+            <tr><td>200&ndash;349</td><td>65 至 80 dB</td><td>重度损失</td></tr>
+            <tr><td>050&ndash;199</td><td>80 至 95 dB</td><td>极重度损失</td></tr>
+            <tr><td>000&ndash;049</td><td>95 dB 或以上</td><td>几乎或完全听不见</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>属于哪种。</strong>在一档 50 之内，位置选出 50 种典型形状之一：各频率平坦、高频较早或较晚下降、4 kHz 附近凹陷，等等。这部分是描述，不是排名。905 和 940 是同样好、类型不同的耳朵，而 950 比 949 好一档。</p>
+      <ul>
+        <li>两个数字相差 50 或更多时，较大的那个在这个指标上是更好的耳朵。相差更小时，不要从谁大谁小得出结论。</li>
+        <li>听力检查不能完全重复，数字也一样。重测常会改变最后两位，也可能让数字进入相邻的一档。相差 100 或更多才算真的变化。</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><h2>000、E 和 N 是什么意思？</h2></summary>
+      <ul>
+        <li><strong>000</strong> 表示这一侧没有听力，或没有耳朵。</li>
+        <li><strong>E</strong>，例如 <code>456E</code>，表示这个数字来自在手机或耳机上的自测，而不是医院。这样的数字比较粗略。</li>
+        <li><strong>N</strong> 表示这只耳朵没有测量，数值是假设的，通常照搬另一只耳朵。</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><h2>这些数字从哪里来？</h2></summary>
+      <p>数字背后的表格是从美国国家健康与营养调查（NHANES）中 29,061 只耳朵的听力检查学习得到的，年龄从 6 岁到 80 岁以上。在建表时留出的耳朵上，由数字还原的图表与实测的相差约 5 dB，大致相当于同一只耳朵再测一次的差别。</p>
+    </details>
+
+    <details>
+      <summary><h2>它不是什么？</h2></summary>
+      <p>Ear Number 只描述听阈，不涉及其他。它不是诊断，不说明听力损失的原因，也不能代替听力评估。它不反映一个人在噪声中听懂言语的能力、多响对他来说太响，或耳鸣，对 500 Hz 以下和 8 kHz 以上也一无所知。</p>
+      <p>它不是约翰斯·霍普金斯大学推广的 <a href="https://hearingnumber.org">Hearing Number</a>，那是一个以 dB 表示、越低越好的单一平均值。Ear Number 的“多少”部分与它接近：(1000 &minus; Ear Number) / 10。</p>
+    </details>
+
+    <details>
+      <summary><h2>我输入的内容会发送到别处吗？</h2></summary>
+      <p>一切都在你的浏览器里完成。你输入或拖动的任何内容都不会发送出去。复制的链接把数字放在 <code>#</code> 之后，这部分地址浏览器不会发送给服务器。分享链接只是普通链接：这些服务的任何内容都不会在本页加载，它们只会收到你选择发布的内容。</p>
+    </details>
+  </article>
+
+  <footer class="foot">
+    <p>第 1 版。方法、数据和代码：<a href="https://github.com/NickRHill/ear-number">github.com/NickRHill/ear-number</a>（<a href="https://github.com/NickRHill/ear-number/blob/main/paper.md">论文，英文</a>）。</p>
+    <p>Hill N (2026). Ear Number: a three-digit description of an ear&#x27;s hearing. 表格、论文和图片采用 CC BY 4.0；代码采用 MIT。表格来自 NHANES 公共使用文件（National Center for Health Statistics）。</p>
+    <p class="translation-note">本页为机器翻译，尚未经过母语人士审校。以英文页面（EN）为准。</p>
+  </footer>
+</main>
+</body>
+</html>

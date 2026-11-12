@@ -9,3 +9,7 @@ jobs:
         with:
           python-version: "3.x"
       - run: python -m unittest discover -s tests
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test tests/js/*.test.mjs
