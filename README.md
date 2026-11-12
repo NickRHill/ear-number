@@ -6,7 +6,8 @@ at all. Unlike a single average, it also records the pattern of the hearing
 loss, so software can turn the number back into an approximate hearing chart,
 and a music player, a pair of earbuds or a hearing aid could set itself up
 from six digits typed in by the listener. It is free to use, and everything
-needed to check it or rebuild it is in this repository.
+needed to check it or rebuild it is in this repository. Try it at
+https://nickrhill.github.io/ear-number/ (in 13 languages).
 
 ## Why hearing needs a number
 
