@@ -440,6 +440,7 @@ function renderShare() {
   const [host, path] = shortAddress();
   ui.pfxHost.textContent = host;
   ui.pfxPath.textContent = path;
+  ui.prefix.title = text ? shareUrl(text) : "";      // hover shows the full link
   markClipped();
   for (const b of [ui.copyNumber, ui.copyLink]) {
     b.disabled = !text;
@@ -641,7 +642,19 @@ async function start() {
   ui.social = $("#social");
   ui.pfxHost = $(".pfx-host");
   ui.pfxPath = $(".pfx-path");
-  new ResizeObserver(markClipped).observe($(".prefix"));
+  ui.prefix = $(".prefix");
+  new ResizeObserver(markClipped).observe(ui.prefix);
+  // Clicking the grey address (not the number) copies the full link, with a one-second "Copied".
+  ui.prefix.dataset.copied = "\u2713 " + t("copied");
+  ui.prefix.addEventListener("click", async () => {
+    const text = pairText();
+    if (!text) return;
+    history.replaceState(null, "", "#" + linkFragment(text));
+    try { await navigator.clipboard.writeText(shareUrl(text)); } catch { return; }
+    ui.prefix.classList.add("copied");
+    clearTimeout(ui.prefix._timer);
+    ui.prefix._timer = setTimeout(() => ui.prefix.classList.remove("copied"), 1000);
+  });
   for (const ear of EARS) {
     const fig = $(`.ear[data-ear="${ear}"]`);
     ui[ear] = { svg: $("svg", fig), num: $(".ear-num", fig), band: $(".ear-band", fig), note: $(".ear-note", fig) };
